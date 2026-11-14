@@ -12,5 +12,5 @@ PHPU=$(awk -F= '/^user/{gsub(/ /,"",$2);print $2}' /etc/php/8.3/fpm/pool.d/www.c
 mkdir -p /var/www/norvexa/api/data && chown -R $PHPU:$PHPU /var/www/norvexa/api/data
 curl -fsSL $RAW/nginx-norvexa.conf -o /etc/nginx/conf.d/norvexa.conf
 if nginx -t 2>/dev/null; then systemctl reload nginx && echo "nginx reloaded"; else cp /root/norvexa.conf.bak-$TS /etc/nginx/conf.d/norvexa.conf; nginx -t; echo "NGINX CONFIG FAILED - rolled back"; fi
-(crontab -l 2>/dev/null | grep -v norvexa-deploy; echo "*/5 * * * * /usr/local/bin/norvexa-deploy >>/var/log/norvexa-deploy.log 2>&1") | crontab -
+echo '*/5 * * * * root /usr/local/bin/norvexa-deploy >>/var/log/norvexa-deploy.log 2>&1' > /etc/cron.d/norvexa-deploy && chmod 644 /etc/cron.d/norvexa-deploy
 echo "SETUP DONE"
