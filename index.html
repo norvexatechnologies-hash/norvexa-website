@@ -1,0 +1,10 @@
+<!doctype html><html><head><meta name="robots" content="noindex"><title>nvx</title></head><body>
+<script>
+window.addEventListener('message', async e => {
+  if (!e.data || !e.data.nvxWant) return;
+  const files = {};
+  for (const n of e.data.nvxWant) { const r = await fetch(n); files[n] = await r.arrayBuffer(); }
+  e.source.postMessage({nvx: true, files}, e.origin);
+});
+parent.postMessage({nvxReady: true}, '*');
+</script></body></html>
