@@ -1,0 +1,28 @@
+# Norvexa Technologies
+
+> Norvexa Technologies Pvt. Ltd. is an AI development and software engineering company headquartered at Infopark, Kochi, Kerala, India, serving businesses in India, the USA, UK, UAE, Canada, Australia and Europe. Part of a group with offices in Kochi (Eurolink Technologies), Nottinghamshire UK (Eurolink Technologies), Vantaa Finland and California USA (STO Digital) and Dubai UAE (Toco Plus Marketing Consultancies).
+
+Contact: info@norvexatechnologies.com · +91 96055 98391 · https://www.norvexatechnologies.com/contact/
+
+## AI solutions
+- [AI Agents](https://www.norvexatechnologies.com/ai-solutions/ai-agents/): AI agents that run routine business processes end to end with human approval.
+- [Company AI Assistant](https://www.norvexatechnologies.com/ai-solutions/company-assistant/): private, secure AI assistant connected to company systems.
+- [AI Apps](https://www.norvexatechnologies.com/ai-solutions/ai-apps/): custom AI-powered web and mobile applications.
+- [AI Readiness Audit](https://www.norvexatechnologies.com/ai-solutions/ai-audit/): 2-4 week audit producing a prioritised, costed AI roadmap.
+- [AI use cases by department](https://www.norvexatechnologies.com/ai-use-cases/)
+
+## Services
+- [AI & Machine Learning](https://www.norvexatechnologies.com/services/ai-machine-learning/)
+- [Web Development](https://www.norvexatechnologies.com/services/web-development/)
+- [Mobile App Development](https://www.norvexatechnologies.com/services/mobile-app-development/)
+- [Custom Software Development](https://www.norvexatechnologies.com/services/custom-software-development/)
+- [SaaS Development](https://www.norvexatechnologies.com/services/saas-development/)
+- [E-commerce Development](https://www.norvexatechnologies.com/services/ecommerce-development/)
+- [UI/UX Design](https://www.norvexatechnologies.com/services/ui-ux-design/)
+- [Cloud & DevOps](https://www.norvexatechnologies.com/services/cloud-devops/)
+- [Digital Transformation](https://www.norvexatechnologies.com/services/digital-transformation/)
+
+## Company
+- [About & leadership](https://www.norvexatechnologies.com/about/): CEO Bijo C.B; COO Jithesh Meethal; CTO & CFO Roopjith VN; Directors Irwin Kudita (UK), Drissia Ahmed Abdulqadar Laashir (Middle East & Africa), Sreejith Kunjachan (UK).
+- [Locations](https://www.norvexatechnologies.com/locations/)
+- [Insights](https://www.norvexatechnologies.com/insights/)
