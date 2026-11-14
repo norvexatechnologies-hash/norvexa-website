@@ -19,6 +19,7 @@ export const SITE = {
   },
   geo: { lat: 10.0105, lng: 76.3637 }, // Infopark Phase I, Kakkanad (approx.)
   // Analytics & verification: set as Netlify environment variables (or edit the fallbacks here)
+  ga4Id: process.env.NEXT_PUBLIC_GA4_ID || 'G-VJGX1L1MWV', // Google Analytics 4 (property "Norvexa", norvexatechnologies@gmail.com)
   gtmId: process.env.NEXT_PUBLIC_GTM_ID || '', // e.g. 'GTM-XXXXXXX'
   gscVerification: process.env.NEXT_PUBLIC_GSC_VERIFICATION || '', // Google Search Console HTML-tag token
   bingVerification: process.env.NEXT_PUBLIC_BING_VERIFICATION || '', // Bing Webmaster Tools msvalidate.01 token

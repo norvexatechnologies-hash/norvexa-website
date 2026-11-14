@@ -3,7 +3,16 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 
 type DL = { push: (o: Record<string, unknown>) => void };
-const dl = () => ((window as unknown as { dataLayer?: DL }).dataLayer ||= [] as unknown as DL);
+type W = { dataLayer?: DL; gtag?: (...a: unknown[]) => void };
+/** Push to GTM's dataLayer and send the same event to GA4 via gtag (when GA4 is loaded). */
+const dl = (): DL => ({
+  push: (o) => {
+    const w = window as unknown as W;
+    (w.dataLayer ||= [] as unknown as DL).push(o);
+    const { event, ...params } = o as { event?: string };
+    if (event && event !== 'virtual_page_view') w.gtag?.('event', event, params);
+  },
+});
 
 /** Pushes clean, named events to the GTM dataLayer. Configure GA4 / Ads / Meta / LinkedIn tags in GTM against these events. */
 export function Tracking() {

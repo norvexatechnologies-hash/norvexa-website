@@ -40,6 +40,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         <script dangerouslySetInnerHTML={{ __html: consentBoot }} />
+        {SITE.ga4Id && (<>
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.ga4Id}`} />
+          <script dangerouslySetInnerHTML={{ __html: `gtag('js',new Date());gtag('config','${SITE.ga4Id}');` }} />
+        </>)}
         {SITE.gtmId && <script dangerouslySetInnerHTML={{ __html: gtm(SITE.gtmId) }} />}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />

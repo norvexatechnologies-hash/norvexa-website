@@ -29,8 +29,10 @@ export function ContactForm({ title = 'Book an intro' }: { title?: string }) {
       const r = await fetch('/api/contact.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' }, body });
       const j = (await r.json().catch(() => ({}))) as { ok?: boolean };
       if (!r.ok || !j.ok) throw new Error(String(r.status));
-      const w = window as unknown as { dataLayer?: Record<string, unknown>[] };
-      (w.dataLayer ||= []).push({ event: 'generate_lead', form_name: 'contact', lead_interest: interests.join('|') || 'unspecified', lead_country: String(f.get('country') || ''), lead_budget: String(f.get('budget') || ''), value: 1, currency: 'USD' });
+      const w = window as unknown as { dataLayer?: Record<string, unknown>[]; gtag?: (...a: unknown[]) => void };
+      const lead = { form_name: 'contact', lead_interest: interests.join('|') || 'unspecified', lead_country: String(f.get('country') || ''), lead_budget: String(f.get('budget') || ''), value: 1, currency: 'INR' };
+      (w.dataLayer ||= []).push({ event: 'generate_lead', ...lead });
+      w.gtag?.('event', 'generate_lead', lead);
       router.push('/thank-you/');
     } catch { setState('failed'); }
   }
