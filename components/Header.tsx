@@ -49,6 +49,7 @@ export function Header() {
               </li>
               <li><Link href="/ai-use-cases/">AI use cases</Link></li>
               <li><Link href="/industries/">Industries</Link></li>
+              <li><Link href="/case-studies/">Case studies</Link></li>
               <li><Link href="/about/">About</Link></li>
               <li><Link href="/insights/">Insights</Link></li>
             </ul>
@@ -68,6 +69,7 @@ export function Header() {
         <Link href="/ai-use-cases/">AI use cases</Link>
         <Link href="/industries/">Industries</Link>
         <Link href="/technologies/">Technologies</Link>
+        <Link href="/case-studies/">Case studies</Link>
         <Link href="/about/">About</Link>
         <Link href="/insights/">Insights</Link>
         <Link href="/careers/">Careers</Link>
