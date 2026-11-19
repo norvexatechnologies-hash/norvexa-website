@@ -498,3 +498,10 @@ html,body{max-width:100%;overflow-x:clip}
 .menu>li>a,.menu>li>button{white-space:nowrap}
 @media (max-width:1380px){.menu>li>a,.menu>li>button{padding:10px 9px;font-size:14.5px}.nav-cta .btn-ghost{display:none}}
 .brand{flex-shrink:0}.brand img{max-width:none}
+.calc h3{font-size:17px;margin:26px 0 12px}.calc h3:first-child{margin-top:0}
+.calc-opts{display:flex;flex-wrap:wrap;gap:10px}
+.calc-opt{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--line2);border-radius:12px;background:#fff;font-size:14.5px;cursor:pointer;transition:.2s}
+.calc-opt input{accent-color:var(--blue)}.calc-opt.on{border-color:var(--sky);background:rgba(74,159,216,.08);box-shadow:0 0 0 3px rgba(74,159,216,.12)}
+.calc-amt{font-family:var(--font-h);font-size:clamp(26px,3vw,34px);font-weight:700;letter-spacing:-.02em;margin-top:12px;background:linear-gradient(100deg,var(--blue),var(--sky));-webkit-background-clip:text;background-clip:text;color:transparent}
+.calc-cur{font:inherit;font-size:13px;padding:6px 10px;border-radius:10px;border:1px solid var(--line2);background:#fff}
+.lm-done h3{font-size:22px}
