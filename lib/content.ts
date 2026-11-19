@@ -745,7 +745,7 @@ export interface Office { label: string; company: string; address: string; phone
 export const OFFICES: Office[] = [
   { label: 'India · Headquarters', company: 'Eurolink Technologies Pvt Ltd', address: 'TBC, 8th Floor, Vismaya, Carnival Infopark Phase I, Infopark Rd, Kakkanad, Kochi, Kerala 682042', phone: '+91 96055 98391', email: 'hello@eurolinktechnologies.com', country: 'IN' },
   { label: 'United Kingdom', company: 'Eurolink Technologies', address: 'Mansfield Road, NG5 2EL, Nottinghamshire, UK', phone: '+44 7384 031625', email: 'info@eurolinktechnologies.co.uk', country: 'GB', region: 'uk', accent: true },
-  { label: 'India · Group company', company: 'Norvexa Technologies Pvt Ltd', address: 'TBC, 8th Floor, Vismaya, Infopark Phase I, Infopark Rd, Kochi, Kerala 682042', email: 'info@norvexatechnologies.com', country: 'IN', region: 'in' },
+  { label: 'India · Group company', company: 'Norvexa Technologies Pvt Ltd', address: 'TBC, 8th Floor, Vismaya, Infopark Phase I, Infopark Rd, Kochi, Kerala 682042', phone: '+91 62383 83735', email: 'info@norvexatechnologies.com', country: 'IN', region: 'in' },
   { label: 'Finland', company: 'STO Digital', address: 'Martinkyläntie 43, 01720 Vantaa · Business ID 3617994-6 · Unit of Norvexa Technologies', phone: '+358 44 9308234', country: 'FI', region: 'de' },
   { label: 'USA · Branch office (Global)', company: 'STO Digital', address: 'Innovation Center, Silicon Valley, California, USA', phone: '+358 44 9308234', country: 'US', region: 'us', accent: true },
   { label: 'UAE · Dubai', company: 'Toco Plus Marketing Consultancies', address: 'M-01, Al Riggah Building, Abu Baker Al Siddique Rd, near Clock Tower, Dubai', phone: '+971 56 393 1963', email: 'hr@tocoads.com', country: 'AE', region: 'ae' },

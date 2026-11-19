@@ -4,7 +4,7 @@ export const SITE = {
   legalName: 'Norvexa Technologies Pvt. Ltd.',
   url: 'https://www.norvexatechnologies.com',
   email: 'info@norvexatechnologies.com',
-  phone: '+91 96055 98391', // group HQ line (Eurolink Technologies, Kochi)
+  phone: '+91 62383 83735',
   whatsapp: '', // e.g. '919000000000' - enables the WhatsApp button
   address: 'TBC, 8th Floor, Vismaya, Infopark Phase I, Infopark Rd, Kochi, Kerala 682042, India',
   city: 'Kochi',
