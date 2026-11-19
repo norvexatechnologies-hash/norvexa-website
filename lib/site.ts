@@ -15,7 +15,7 @@ export const SITE = {
     linkedin: 'https://www.linkedin.com/in/norvexa-technologies/',
     facebook: 'https://www.facebook.com/norvexatechnologies/',
     instagram: 'https://www.instagram.com/norvexatechnologies/',
-    youtube: 'https://www.youtube.com/@norvexatechnologies',
+    youtube: 'https://www.youtube.com/@norvexatech',
   },
   geo: { lat: 10.0105, lng: 76.3637 }, // Infopark Phase I, Kakkanad (approx.)
   // Analytics & verification: set as Netlify environment variables (or edit the fallbacks here)
