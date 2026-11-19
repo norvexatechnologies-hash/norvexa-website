@@ -5,7 +5,7 @@ export const SITE = {
   url: 'https://www.norvexatechnologies.com',
   email: 'info@norvexatechnologies.com',
   phone: '+91 62383 83735',
-  whatsapp: '', // e.g. '919000000000' - enables the WhatsApp button
+  whatsapp: '916238383735',
   address: 'TBC, 8th Floor, Vismaya, Infopark Phase I, Infopark Rd, Kochi, Kerala 682042, India',
   city: 'Kochi',
   tagline: 'AI in every part of how your business runs.',
