@@ -7,6 +7,8 @@ import { abs, SITE } from '@/lib/site';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { JsonLd } from '@/components/JsonLd';
 import { Cta } from '@/components/Cta';
+import { AppArt, WebArt } from '@/components/CaseArt';
+import { flagOf } from '@/lib/case-meta';
 
 type P = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
@@ -34,8 +36,11 @@ export default async function Page({ params }: P) {
           <span className="eyebrow">{c.kind === 'app' ? 'Mobile app' : 'Website'} · {c.industry}</span>
           <h1 style={{ fontSize: 'clamp(34px,4.6vw,56px)' }}>{c.client}</h1>
           <p className="lead">{c.summary}</p>
-          <div className="article-meta"><span>{c.location}</span>{c.platforms && <><span>·</span><span>{c.platforms}</span></>}{c.site && <><span>·</span><a href={`https://${c.site}`} target="_blank" rel="noopener nofollow">{c.site} ↗</a></>}</div>
+          <div className="article-meta"><span>{flagOf(c)} {c.location}</span>{c.platforms && <><span>·</span><span>{c.platforms}</span></>}{c.site && <><span>·</span><a href={`https://${c.site}`} target="_blank" rel="noopener nofollow">{c.site} ↗</a></>}</div>
         </div>
+      </section>
+      <section className="cs-show">
+        <div className="wrap">{c.kind === 'web' ? <WebArt c={c} large /> : <AppArt c={c} large />}</div>
       </section>
       <section style={{ paddingTop: 64 }}>
         <div className="wrap split" style={{ gridTemplateColumns: '1.4fr .6fr' }}>
@@ -65,7 +70,15 @@ export default async function Page({ params }: P) {
       <section className="band" style={{ paddingTop: 80, paddingBottom: 0, borderBottom: 0 }}>
         <div className="wrap">
           <div className="sec-head"><h2 style={{ fontSize: 30 }}>More case studies</h2></div>
-          <div className="related">{related.map((x) => <Link key={x.slug} href={`/case-studies/${x.slug}/`} className="rel"><small>{x.industry} · {x.location}</small><h3>{x.client}</h3><p>{x.summary}</p></Link>)}</div>
+          <div className="cs-grid">{related.map((x) => (
+            <Link key={x.slug} href={`/case-studies/${x.slug}/`} className={`cs-card ${x.kind}`}>
+              <div className="cs-media">{x.kind === 'web' ? <WebArt c={x} /> : <AppArt c={x} />}</div>
+              <div className="cs-body">
+                <div className="cs-meta"><span>{flagOf(x)} {x.location}</span><span>{x.industry}</span></div>
+                <h3>{x.client}</h3><p>{x.summary}</p>
+                <span className="cs-more">{x.kind === 'app' ? 'View app case study' : 'View case study'} →</span>
+              </div>
+            </Link>))}</div>
           <p style={{ marginTop: 24 }}><Link href="/case-studies/" className="link-arrow">All case studies <span>→</span></Link></p>
         </div>
         <Cta />

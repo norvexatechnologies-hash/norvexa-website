@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import { CASES, type CaseStudy } from '@/lib/cases';
+import { CASES } from '@/lib/cases';
 import { pageMeta } from '@/lib/seo';
-import { abs } from '@/lib/site';
-import { PageHero } from '@/components/PageHero';
+import { abs, SITE } from '@/lib/site';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { JsonLd } from '@/components/JsonLd';
-import { Cta } from '@/components/Cta';
+import { CaseGrid } from '@/components/CaseGrid';
 
 export const metadata = pageMeta({
   title: 'Case Studies: Websites & Mobile Apps',
@@ -12,35 +12,40 @@ export const metadata = pageMeta({
   path: '/case-studies/',
 });
 
-const Card = ({ c, i }: { c: CaseStudy; i: number }) => (
-  <Link href={`/case-studies/${c.slug}/`} className={`rel rv ${['', 'd1', 'd2'][i % 3]}`}>
-    <small>{c.industry} · {c.location}</small>
-    <h3 style={{ fontSize: 20, margin: '8px 0' }}>{c.client}</h3>
-    <p>{c.summary}</p>
-    <div className="tagrow">{c.tags.slice(0, 3).map((t) => <span key={t} className="tag">{t}</span>)}</div>
-  </Link>
-);
+const WA = SITE.whatsapp ? `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hello Norvexa, I'd like to discuss a project.")}` : '/contact/';
 
 export default function Page() {
-  const web = CASES.filter((c) => c.kind === 'web');
-  const apps = CASES.filter((c) => c.kind === 'app');
   return (
     <>
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'ItemList', name: 'Norvexa case studies', itemListElement: CASES.map((c, i) => ({ '@type': 'ListItem', position: i + 1, url: abs(`/case-studies/${c.slug}/`), name: c.client })) }} />
-      <PageHero eyebrow="Case studies" title="Work that ships, across 8 countries." lead={`${web.length} websites and web platforms and ${apps.length} mobile apps for clients in the UAE, Oman, Kuwait, the UK, India, Indonesia, Australia and beyond, delivered by Norvexa and our partner TOCO Technologies, Dubai.`} crumbs={[{ name: 'Case studies', path: '/case-studies/' }]} secondary={{ href: '#apps', label: 'See mobile apps' }} />
-      <section>
+      <section className="page-hero cs-hero">
+        <div className="grid-bg" aria-hidden="true" />
         <div className="wrap">
-          <div className="sec-head"><span className="eyebrow">Websites & web platforms</span><h2>{web.length} websites built to rank and convert</h2></div>
-          <div className="related">{web.map((c, i) => <Card key={c.slug} c={c} i={i} />)}</div>
+          <Breadcrumbs items={[{ name: 'Case studies', path: '/case-studies/' }]} />
+          <span className="eyebrow">Case studies</span>
+          <h1>Some of our <em className="grad-text">works</em></h1>
+          <p className="lead">Websites and mobile apps we have built for clients across the Middle East, India, the UK, Asia and Australia, delivered by Norvexa and our partner TOCO Technologies, Dubai. What each client asked for, and what we delivered.</p>
+          <div className="hero-ctas">
+            <Link href="/contact/" className="btn btn-primary">Get a quote <span className="arr">→</span></Link>
+            <a href={WA} className="btn btn-wa" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
         </div>
       </section>
-      <section id="apps" className="band">
+      <section className="cs-section">
+        <div className="wrap"><CaseGrid cases={CASES} /></div>
+      </section>
+      <section className="cs-cta">
         <div className="wrap">
-          <div className="sec-head"><span className="eyebrow">Mobile apps</span><h2>{apps.length} apps on Android and iOS</h2></div>
-          <div className="related">{apps.map((c, i) => <Card key={c.slug} c={c} i={i} />)}</div>
+          <span className="eyebrow">Let&apos;s work together</span>
+          <h2>Want results like these? Let&apos;s talk.</h2>
+          <p>Tell us about your project. We reply within one business day.</p>
+          <div className="hero-ctas">
+            <a href={`tel:${SITE.phone.replace(/\s/g, '')}`} className="btn btn-ghost">{SITE.phone}</a>
+            <a href={WA} className="btn btn-wa" target="_blank" rel="noopener">Chat on WhatsApp</a>
+            <Link href="/app-cost-calculator/" className="btn btn-primary">Estimate project <span className="arr">→</span></Link>
+          </div>
         </div>
       </section>
-      <Cta />
     </>
   );
 }
