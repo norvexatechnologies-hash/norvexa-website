@@ -1,0 +1,7 @@
+User-Agent: *
+Allow: /
+Disallow: /thank-you/
+Disallow: /api/
+
+Host: https://www.norvexatechnologies.com/
+Sitemap: https://www.norvexatechnologies.com/sitemap.xml
