@@ -1,0 +1,123 @@
+<?php
+// Question bank for the AI marketing assessment (/careers/assessment/). Answer keys live only here, on the server.
+// Loaded by assessment.php; opening this URL directly returns 404.
+if (!defined('NX_ASSESS')) { http_response_code(404); exit; }
+
+return [
+  'tracks' => [
+    'intern'      => ['label' => 'Internship',             'minutes' => 30, 'core' => 15, 'adv' => 0],
+    'fresher'     => ['label' => 'Fresher (0–1 year)',     'minutes' => 35, 'core' => 15, 'adv' => 3],
+    'experienced' => ['label' => 'Experienced (1+ years)', 'minutes' => 45, 'core' => 10, 'adv' => 10],
+  ],
+
+  // Multiple choice. 'a' is the id of the correct option; options are shuffled in the browser.
+  'mcq' => [
+    // ---- core: AI tools, prompting, automation basics, performance marketing fundamentals
+    ['id' => 'c01', 'lvl' => 'core', 'q' => 'Your team of five writes social posts with ChatGPT or Claude, and every person gets a different brand voice. What fixes this best?',
+      'o' => ['a' => 'Each person retypes the brand rules into every chat', 'b' => 'A shared Custom GPT or Claude Project loaded with the brand guide, tone rules and approved example posts', 'c' => 'Ask the AI to be "more on-brand"', 'd' => 'Use shorter prompts so the AI improvises less'], 'a' => 'b'],
+    ['id' => 'c02', 'lvl' => 'core', 'q' => 'An AI tool gives you a market statistic for a blog post. What do you do before publishing?',
+      'o' => ['a' => 'Publish it, AI tools are trained on reliable data', 'b' => 'Ask the same AI if it is sure', 'c' => 'Find and cite the original source; drop the number if you cannot verify it', 'd' => 'Round the number so it looks less precise'], 'a' => 'c'],
+    ['id' => 'c03', 'lvl' => 'core', 'q' => 'In generative AI, a "hallucination" is…',
+      'o' => ['a' => 'A creative image style', 'b' => 'Confident output that is false or made up', 'c' => 'When the model refuses to answer', 'd' => 'A slow response caused by server load'], 'a' => 'b'],
+    ['id' => 'c04', 'lvl' => 'core', 'q' => 'Which prompt will produce the most usable Meta ad copy?',
+      'o' => ['a' => '"Write an ad for our product"', 'b' => '"Write a viral ad, make it amazing"', 'c' => '"Write 5 Meta ad variants for [product] aimed at [audience] with [pain point]. Offer: [offer]. Primary text under 125 characters, headline under 40, friendly tone, one clear CTA. Here are 2 past ads that performed well: …"', 'd' => '"Act as a marketer"'], 'a' => 'c'],
+    ['id' => 'c05', 'lvl' => 'core', 'q' => 'What are Zapier, Make and n8n mainly used for?',
+      'o' => ['a' => 'Designing logos', 'b' => 'Connecting apps so an event in one tool automatically triggers actions in others', 'c' => 'Hosting websites', 'd' => 'Buying ad inventory'], 'a' => 'b'],
+    ['id' => 'c06', 'lvl' => 'core', 'q' => 'In an automation workflow, the "trigger" is…',
+      'o' => ['a' => 'The event that starts the workflow, e.g. "new lead submitted"', 'b' => 'The last step that sends a report', 'c' => 'An error message', 'd' => 'The monthly subscription fee'], 'a' => 'a'],
+    ['id' => 'c07', 'lvl' => 'core', 'q' => 'You want every Meta lead-form lead to get a WhatsApp welcome within 2 minutes and appear in the CRM. Best setup?',
+      'o' => ['a' => 'Download the leads CSV every evening and message each person manually', 'b' => 'Meta Lead Ads trigger in Make/Zapier/n8n → create or update the CRM contact → send an approved WhatsApp Business API template → alert the sales rep', 'c' => 'Ask leads to message you first', 'd' => 'Email the CSV to the sales team weekly'], 'a' => 'b'],
+    ['id' => 'c08', 'lvl' => 'core', 'q' => 'You spend ₹50,000 on ads and they generate ₹2,00,000 in revenue. What is the ROAS?',
+      'o' => ['a' => '0.25', 'b' => '2', 'c' => '4', 'd' => '150,000'], 'a' => 'c'],
+    ['id' => 'c09', 'lvl' => 'core', 'q' => 'An ad gets 20,000 impressions and 300 clicks. What is the CTR?',
+      'o' => ['a' => '0.15%', 'b' => '1.5%', 'c' => '6.6%', 'd' => '15%'], 'a' => 'b'],
+    ['id' => 'c10', 'lvl' => 'core', 'q' => 'Why do we add UTM parameters to campaign links?',
+      'o' => ['a' => 'To make links load faster', 'b' => 'To improve SEO rankings', 'c' => 'So analytics (e.g. GA4) can attribute visits and conversions to the right source, medium and campaign', 'd' => 'To shorten the URL'], 'a' => 'c'],
+    ['id' => 'c11', 'lvl' => 'core', 'q' => 'Which of these is a retargeting audience?',
+      'o' => ['a' => 'People aged 25–40 in Kochi', 'b' => 'Website visitors from the last 30 days who viewed pricing but did not book a call', 'c' => 'Everyone interested in "marketing"', 'd' => 'A lookalike of your Instagram followers'], 'a' => 'b'],
+    ['id' => 'c12', 'lvl' => 'core', 'q' => 'What makes an A/B test result trustworthy?',
+      'o' => ['a' => 'Changing headline, image and audience at the same time', 'b' => 'Running it for one hour', 'c' => 'Changing one variable against a control, with enough volume to reach significance', 'd' => 'Picking the version the manager likes'], 'a' => 'c'],
+    ['id' => 'c13', 'lvl' => 'core', 'q' => 'How can a marketer get the most out of coding agents such as OpenAI Codex or Claude Code?',
+      'o' => ['a' => 'They are only for professional software engineers', 'b' => 'Describe the job in plain language and have them build things like landing pages, tracking scripts, data clean-up and API automations, then test the result', 'c' => 'They replace the need for any analytics', 'd' => 'They are mainly image generators'], 'a' => 'b'],
+    ['id' => 'c14', 'lvl' => 'core', 'q' => 'You need AI to analyse a spreadsheet of customer names, phone numbers and purchases. What is the right approach?',
+      'o' => ['a' => 'Paste it into any free AI tool', 'b' => 'Remove or mask personal data, or use the company-approved business workspace whose data controls exclude training', 'c' => 'Post it in a public AI community for help', 'd' => 'Personal data is fine to share if the analysis is internal'], 'a' => 'b'],
+    ['id' => 'c15', 'lvl' => 'core', 'q' => 'What does "360° (full-funnel) performance marketing" mean?',
+      'o' => ['a' => 'Running only Google Search ads', 'b' => 'Posting on every social network daily', 'c' => 'Planning awareness, consideration, conversion and retention across channels together, with shared tracking and one view of results', 'd' => 'Using 360-degree videos in ads'], 'a' => 'c'],
+    ['id' => 'c16', 'lvl' => 'core', 'q' => 'Before you publish an AI-generated ad image, which check matters most?',
+      'o' => ['a' => 'That it was made with the newest model', 'b' => 'Brand fit, spelling in any text, realistic hands and products, platform policy and size specs, and usage rights', 'c' => 'That the file is as large as possible', 'd' => 'No checks are needed for AI images'], 'a' => 'b'],
+    ['id' => 'c17', 'lvl' => 'core', 'q' => 'Which is a good use of AI for SEO?',
+      'o' => ['a' => 'Publishing 200 unedited AI articles a week', 'b' => 'Keyword clustering, search-intent mapping and outline drafts, finished by a human adding real expertise and examples', 'c' => 'Copying competitor pages and having AI reword them', 'd' => 'Hiding keywords in white text'], 'a' => 'b'],
+    ['id' => 'c18', 'lvl' => 'core', 'q' => 'Which Google Ads campaign type uses Google AI to serve ads across Search, YouTube, Display, Discover, Gmail and Maps from one campaign?',
+      'o' => ['a' => 'Performance Max', 'b' => 'Standard Shopping', 'c' => 'Call-only', 'd' => 'Smart Display (legacy)'], 'a' => 'a'],
+    ['id' => 'c19', 'lvl' => 'core', 'q' => 'What is "prompt chaining" in a content workflow?',
+      'o' => ['a' => 'Pasting the same prompt many times', 'b' => 'Splitting the job into steps (research → outline → draft → critique → final) where each output feeds the next prompt', 'c' => 'Sharing prompts on social media', 'd' => 'Using several AI tools at random'], 'a' => 'b'],
+    ['id' => 'c20', 'lvl' => 'core', 'q' => 'You give Claude or ChatGPT last month\'s campaign CSV. Which request gives the most useful output?',
+      'o' => ['a' => '"Analyse this"', 'b' => '"Is this good?"', 'c' => '"Calculate CPL and conversion rate per ad set, flag anything 30% worse than average, explain likely causes, and give 3 prioritised actions for next week in a table"', 'd' => '"Make a chart"'], 'a' => 'c'],
+
+    // ---- advanced: measurement, scaling, AI-driven automation architecture
+    ['id' => 'a01', 'lvl' => 'adv', 'q' => 'What does Meta Conversions API (CAPI) or server-side tracking mainly solve?',
+      'o' => ['a' => 'It makes ads cheaper automatically', 'b' => 'It sends conversion events from your server, restoring signal lost to browser blocking and cookie limits, so optimisation and reporting improve', 'c' => 'It replaces the need for a website', 'd' => 'It is only for e-commerce stores'], 'a' => 'b'],
+    ['id' => 'a02', 'lvl' => 'adv', 'q' => 'A B2B client pays for "leads", but sales say most are junk. Which fix improves lead quality the most over time?',
+      'o' => ['a' => 'Lower the cost-per-lead target', 'b' => 'Import CRM outcomes (qualified / won) back into Google and Meta as offline conversions and optimise for them', 'c' => 'Add more interests to the audience', 'd' => 'Switch to brand-awareness campaigns'], 'a' => 'b'],
+    ['id' => 'a03', 'lvl' => 'adv', 'q' => 'Frequency is rising, CTR is falling and CPA is climbing on a previously strong ad set. What is the most likely cause?',
+      'o' => ['a' => 'Creative fatigue: refresh creatives or widen the audience', 'b' => 'The pixel is broken', 'c' => 'The budget is too low', 'd' => 'Seasonality always explains this'], 'a' => 'a'],
+    ['id' => 'a04', 'lvl' => 'adv', 'q' => 'What does an incrementality test (conversion lift or geo holdout) measure?',
+      'o' => ['a' => 'Total platform-reported conversions', 'b' => 'The extra conversions caused by the ads compared with what would have happened without them', 'c' => 'Website speed', 'd' => 'Brand sentiment'], 'a' => 'b'],
+    ['id' => 'a05', 'lvl' => 'adv', 'q' => 'A Meta campaign is profitable and you want to double spend. What is the safest approach?',
+      'o' => ['a' => 'Raise the budget 5x overnight', 'b' => 'Raise the budget in steps of about 20–30% every few days, or duplicate into a new campaign, while watching CPA', 'c' => 'Pause it and restart with a bigger budget', 'd' => 'Change the creative and audience at the same time as the budget'], 'a' => 'b'],
+    ['id' => 'a06', 'lvl' => 'adv', 'q' => 'Google Ads Enhanced Conversions work by…',
+      'o' => ['a' => 'Sending hashed first-party data (e.g. email) with conversions to improve match rates and measurement', 'b' => 'Doubling every conversion value', 'c' => 'Using third-party cookies', 'd' => 'Adding more keywords automatically'], 'a' => 'a'],
+    ['id' => 'a07', 'lvl' => 'adv', 'q' => 'You deploy an AI agent that answers WhatsApp leads 24/7. Which set of guardrails matters most?',
+      'o' => ['a' => 'Let it answer anything as creatively as possible', 'b' => 'A grounded knowledge base, no invented prices or promises, opt-in and approved templates, human handover for complex cases, and logged conversations', 'c' => 'Hide that it is automated', 'd' => 'Send it to every phone number you can find'], 'a' => 'b'],
+    ['id' => 'a08', 'lvl' => 'adv', 'q' => 'A healthy LTV:CAC ratio for a growing subscription business is usually around…',
+      'o' => ['a' => '0.5 : 1', 'b' => '1 : 1', 'c' => '3 : 1 or better', 'd' => 'It does not matter'], 'a' => 'c'],
+    ['id' => 'a09', 'lvl' => 'adv', 'q' => 'Marketing Mix Modelling (MMM) is best used to…',
+      'o' => ['a' => 'Track one user across devices', 'b' => 'Estimate each channel\'s contribution, including offline and upper-funnel, from aggregated spend and outcome data over time', 'c' => 'Write ad copy', 'd' => 'Replace A/B tests on landing pages'], 'a' => 'b'],
+    ['id' => 'a10', 'lvl' => 'adv', 'q' => 'Which AI lead-scoring setup is most actionable?',
+      'o' => ['a' => 'A score in a spreadsheet nobody opens', 'b' => 'Firmographic, enrichment and behavioural signals scored by a model or LLM, written to the CRM, routing hot leads to sales instantly, and checked against closed deals each month', 'c' => 'Scoring leads by how long their message is', 'd' => 'Asking the AI which leads "feel" good'], 'a' => 'b'],
+    ['id' => 'a11', 'lvl' => 'adv', 'q' => 'GA4 data-driven attribution…',
+      'o' => ['a' => 'Gives 100% of credit to the last click', 'b' => 'Uses your account\'s conversion paths to share credit across touchpoints according to their measured influence', 'c' => 'Only works for offline sales', 'd' => 'Gives equal credit to every touchpoint'], 'a' => 'b'],
+    ['id' => 'a12', 'lvl' => 'adv', 'q' => 'You build a weekly report automation: an n8n flow pulls Google Ads, Meta and GA4 data, then an LLM writes the summary. Which design is most reliable?',
+      'o' => ['a' => 'Let the LLM fetch and calculate everything itself from screenshots', 'b' => 'Calculate the metrics in code or SQL first, pass the LLM a clean table with targets, ask for structured output, and have a person review before it goes to the client', 'c' => 'Ask the LLM to guess numbers if the data is missing', 'd' => 'Email the raw API responses to the client'], 'a' => 'b'],
+  ],
+
+  // Practical tasks: free text, scored 0–10 each (AI-assisted grading when configured, plus human review).
+  'tasks' => [
+    'intern' => [
+      ['id' => 't1', 'title' => 'Prompt craft', 'q' => 'A café in Kochi is launching cold brew this weekend. Write the exact prompt you would give ChatGPT or Claude to get 5 Instagram captions. Then paste the best caption it produced and say why you picked it.',
+        'rubric' => 'Prompt states audience, offer/launch details, tone, platform constraints (length, hashtags, emoji), number and format of outputs; ideally includes examples or brand details. Caption choice is justified with marketing reasons (hook, CTA, local relevance).'],
+      ['id' => 't2', 'title' => 'Automation thinking', 'q' => 'Every person who fills an Instagram or Facebook lead form should automatically get a WhatsApp or email welcome, and the sales team should be notified. Describe step by step how you would set this up and name the tools.',
+        'rubric' => 'Identifies trigger (Meta lead ads), automation tool (Zapier/Make/n8n), CRM or sheet storage, WhatsApp Business API or email tool, team notification; mentions speed, consent/opt-in, and testing. Logical order of steps.'],
+      ['id' => 't3', 'title' => 'Your AI toolkit', 'q' => 'Which AI tools do you use most and what for? Describe one thing you created or automated with AI (share a link if you can).',
+        'rubric' => 'Concrete, specific tool usage (not generic); a real example with detail; evidence of curiosity and hands-on use (custom GPTs, Claude projects, image tools, automations).'],
+    ],
+    'fresher' => [
+      ['id' => 't1', 'title' => 'Prompt craft: ad copy', 'q' => 'Write the exact prompt you would give ChatGPT or Claude to create Meta ad copy for a Kochi coding bootcamp targeting working professionals aged 24–35 who want to move into tech. Then paste the 2 best variants it produced and say what you would A/B test first.',
+        'rubric' => 'Prompt includes audience, pain points, offer, constraints (Meta character limits, format), tone, number of variants; ideally examples/brand info. Variants are usable. A/B test choice isolates one variable with a reason.'],
+      ['id' => 't2', 'title' => 'Lead automation workflow', 'q' => 'Design an automated flow: Meta lead form → CRM → instant WhatsApp welcome → 5-day nurture (email or WhatsApp) → alert to sales when a lead replies or clicks "book a call". Name the tools, the trigger and each step, and say where AI (ChatGPT or Claude) could help.',
+        'rubric' => 'Correct trigger and tools (Make/Zapier/n8n, HubSpot/Zoho/sheet, WhatsApp Business API with approved templates, email tool); timed nurture steps; sales alert condition; sensible AI use (personalisation, reply classification, lead qualification); mentions consent, dedupe or error handling for top marks.'],
+      ['id' => 't3', 'title' => 'Read the data', 'q' => "Last week's lead campaign:\n• Ad set A: spend ₹20,000 · 1,000 clicks · 80 leads\n• Ad set B: spend ₹15,000 · 1,500 clicks · 30 leads\n• Ad set C: spend ₹10,000 · 400 clicks · 50 leads\nWork out the cost per lead for each. Which would you scale, keep or fix, and why? How would you use AI to speed up this analysis every week?",
+        'rubric' => 'Correct CPL: A ₹250, B ₹500, C ₹200 (conversion rates A 8%, B 2%, C 12.5%). Scale C, keep/optimise A, fix or pause B (good CTR, poor conversion: landing page/audience mismatch). Sensible AI workflow (export → structured prompt or automation → summary).'],
+      ['id' => 't4', 'title' => 'Your AI toolkit', 'q' => 'Describe the most useful thing you have built or automated with AI tools (ChatGPT, Claude, Codex, Canva AI, n8n, etc.). What was the result? Share a link if you can.',
+        'rubric' => 'Specific, real project with tools named, steps, and an outcome or metric. Bonus for coding agents, custom GPTs, or automations.'],
+    ],
+    'experienced' => [
+      ['id' => 't1', 'title' => '360° performance plan', 'q' => 'An AI software company has ₹5,00,000 a month and needs 60 sales-qualified leads (SQLs) a month from India and the UAE. Outline your channel mix and budget split, the funnel stages, the KPIs and targets you would track (CPL, SQL rate, CAC…), and which parts you would automate with AI.',
+        'rubric' => 'Coherent full-funnel plan with budget split adding up; channel choice fits B2B (LinkedIn, Google Search, Meta retargeting, content/SEO, email, WhatsApp); back-solves required leads from SQL rate; realistic KPIs and targets; specific AI automations (creative generation, lead scoring, reporting, nurture); measurement plan (CRM, offline conversions).'],
+      ['id' => 't2', 'title' => 'Automation architecture', 'q' => 'Describe the end-to-end automated lead lifecycle you would build for that company: capture, enrichment, AI lead scoring, CRM routing, WhatsApp/email nurture, sales hand-off, and sending qualified/won deals back to Google and Meta. Name the tools, where an LLM (ChatGPT or Claude API) sits, and how you handle failures and data privacy.',
+        'rubric' => 'Complete architecture with named tools; correct placement of LLM (classification, scoring, personalisation) with structured output; offline conversion/CAPI feedback loop; error handling, retries, dedupe, logging; consent and PII handling; human-in-the-loop.'],
+      ['id' => 't3', 'title' => 'Diagnose the account', 'q' => "Campaign data (last 14 days):\n• Ad set A: spend ₹60,000 · CTR 1.1% · 240 leads · 20 SQLs · frequency 1.8\n• Ad set B: spend ₹45,000 · CTR 2.4% · 300 leads · 9 SQLs · frequency 4.6\n• Ad set C: spend ₹25,000 · CTR 0.8% · 70 leads · 14 SQLs · frequency 1.4\nCalculate cost per SQL. What is happening in each ad set, and what exactly would you do this week?",
+        'rubric' => 'Cost per SQL: A ₹3,000, B ₹5,000, C ≈ ₹1,786. Recognises B has cheap leads but poor quality plus creative fatigue (frequency 4.6); C most efficient on SQLs (scale gradually); A solid. Actions: shift budget to C in steps, refresh B creatives, qualify B form (higher-intent questions), optimise on SQL via offline conversions.'],
+      ['id' => 't4', 'title' => 'Proof of work', 'q' => 'Describe a real AI or automation workflow you have built (custom GPTs, Claude Projects, Codex or Claude Code scripts, n8n/Make flows, AI creative pipelines…). What problem did it solve and what was the measurable result? Share links if you can.',
+        'rubric' => 'Specific, credible project with tools, architecture and measurable business result (time saved, CPL/CAC change, revenue). Depth of hands-on ownership.'],
+    ],
+  ],
+
+  // Self-rated tool proficiency (0 never used · 1 basic · 2 regular · 3 advanced / built with it).
+  'tools' => [
+    'ChatGPT (incl. Custom GPTs)', 'Claude (Projects, Artifacts)', 'OpenAI Codex', 'Claude Code', 'Gemini', 'Perplexity',
+    'AI image / video (Midjourney, Ideogram, Runway, Canva AI)', 'Zapier', 'Make', 'n8n', 'HubSpot / Zoho CRM',
+    'WhatsApp Business API', 'Meta Ads Manager (Advantage+)', 'Google Ads (Performance Max)', 'GA4', 'Google Tag Manager',
+    'Looker Studio', 'SEMrush / Ahrefs',
+  ],
+];
