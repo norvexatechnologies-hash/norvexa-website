@@ -18,6 +18,13 @@ const ROLES = [
   ['Business Development Manager (International)', 'Growth', 'Full-time · Hybrid'],
 ];
 
+// Digital marketing hiring runs through the online assessment instead of email applications.
+const MARKETING = [
+  ['Digital Marketing Executive (AI & Automation)', 'Experienced', 'experienced'],
+  ['Digital Marketing Associate (AI-first)', 'Fresher', 'fresher'],
+  ['Digital Marketing Intern (AI tools)', 'Internship', 'intern'],
+];
+
 export default function Page() {
   return (
     <>
@@ -35,6 +42,12 @@ export default function Page() {
               <div className="job" key={t}>
                 <div><h3>{t}</h3><div className="tags"><span className="tag">{team}</span><span className="tag">{type}</span></div></div>
                 <a className="btn btn-ghost" href={`mailto:${SITE.email}?subject=${encodeURIComponent('Application: ' + t)}`}>Apply</a>
+              </div>
+            ))}
+            {MARKETING.map(([t, level, track]) => (
+              <div className="job" key={t}>
+                <div><h3>{t}</h3><div className="tags"><span className="tag">Marketing</span><span className="tag">{level}</span><span className="tag">Apply via assessment</span></div></div>
+                <Link className="btn btn-ghost" href={`/careers/assessment/?track=${track}`}>Take assessment</Link>
               </div>
             ))}
           </div>

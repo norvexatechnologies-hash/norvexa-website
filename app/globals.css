@@ -599,3 +599,30 @@ html,body{max-width:100%;overflow-x:clip}
 /* case detail showcase */
 .cs-show{padding:36px 0 0;background:linear-gradient(180deg,var(--bg2),var(--bg))}
 .cs-show .wrap{max-width:980px}
+
+/* candidate assessment (/careers/assessment/) */
+.as-wrap{max-width:860px}
+.as-card{display:grid;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:28px;margin-bottom:20px}
+.as-card h2{font-size:26px}.as-sub{color:var(--muted);font-size:15px;margin-top:-8px}
+.as-center{text-align:center;justify-items:center;padding:56px 28px}.as-center p{color:var(--muted);max-width:560px}
+.as-tracks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.as-track{font:inherit;text-align:left;display:grid;gap:2px;padding:14px 16px;border-radius:14px;border:1.5px solid var(--line2);background:var(--bg);color:var(--ink);cursor:pointer;transition:.2s}
+.as-track span{font-size:13px;color:var(--muted)}.as-track small{font-size:12px;color:var(--blue);font-weight:600;margin-top:4px}
+.as-track.on{border-color:var(--blue);background:#eef4ff;box-shadow:0 0 0 4px rgba(29,78,216,.1)}
+.as-rules{display:grid;gap:8px;padding:16px 18px 16px 34px;background:var(--bg2);border-radius:14px;font-size:14px;color:var(--ink2)}
+.as-bar{position:sticky;top:76px;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 18px;margin-bottom:16px;border-radius:14px;background:var(--ink);color:#fff;font-size:14px;box-shadow:var(--shadow)}
+.as-bar.warn{background:#b91c1c}.as-time{font-family:var(--mono);font-size:20px;font-weight:700}
+.as-mcq{display:grid;gap:22px;padding-left:22px}.as-mcq>li>p{font-weight:600;margin-bottom:10px}
+.as-opts{display:grid;gap:8px}
+.as-opts label{display:flex;gap:10px;align-items:flex-start;padding:11px 14px;border:1px solid var(--line2);border-radius:12px;background:var(--bg);cursor:pointer;font-size:14.5px;transition:.15s}
+.as-opts label:hover{border-color:var(--sky)}.as-opts label.on{border-color:var(--blue);background:#eef4ff}
+.as-opts input{margin-top:4px;accent-color:var(--blue)}
+.as-task{gap:8px}.as-task label{font-size:16px;color:var(--ink)}.as-q{white-space:pre-line;font-size:14.5px;color:var(--ink2)}
+.as-task textarea{min-height:180px}.as-count{justify-self:end;font-size:12px;color:var(--muted)}
+.as-tools{display:grid;gap:8px}
+.as-tool{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.as-tool>div{display:flex;gap:4px;flex:none}
+.as-tool button{font:inherit;font-size:12.5px;padding:6px 10px;border-radius:999px;border:1px solid var(--line2);background:var(--bg);color:var(--ink2);cursor:pointer}
+.as-tool button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.as-submit{width:100%;justify-content:center;margin-bottom:40px}
+@media (max-width:720px){.as-card{padding:20px 16px}.as-tracks{grid-template-columns:1fr}.as-tool{flex-direction:column;align-items:flex-start}.as-tool>div{flex-wrap:wrap}.as-bar{top:64px}}
