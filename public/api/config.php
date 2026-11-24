@@ -9,7 +9,7 @@ return [
 
   // Candidate assessment (/careers/assessment/ → api/assessment.php, results at api/results.php)
   'assess_to' => 'info@norvexatechnologies.com',        // where each completed assessment is emailed
-  'assess_admin_password' => '',                        // set on the server; login at /api/results.php is user "hr" + this password
+  'assess_admin_password' => '',                        // optional: /api/results.php always offers a sign-in link emailed to assess_to; set this to also allow a password
   'anthropic_api_key' => '',                            // optional: Claude API key, enables AI grading of the practical answers
   'assess_model' => 'claude-opus-5-5',                  // Claude model used for grading
 ];

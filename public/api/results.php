@@ -1,5 +1,5 @@
 <?php
-// HR dashboard for the AI marketing assessment. Password-protected (user "hr", password = assess_admin_password in config.php).
+// HR dashboard for the AI marketing assessment. Sign in with a one-time link emailed to assess_to (or the admin password, if set in config.php).
 //   /api/results.php            ranked list (filter with ?track=intern|fresher|experienced)
 //   /api/results.php?id=…       one candidate's full answers
 //   /api/results.php?csv=1      download everything as CSV (opens in Excel / Google Sheets)
@@ -10,12 +10,52 @@ require __DIR__ . '/assessment-lib.php';
 header('X-Robots-Tag: noindex');
 header('Cache-Control: no-store');
 
+/* ---------- sign-in: one-time link emailed to the HR inbox (no server setup needed), or assess_admin_password if set */
 $pw = (string)($cfg['assess_admin_password'] ?? '');
-if ($pw === '') { http_response_code(403); header('Content-Type: text/plain'); echo "Results are locked. Set 'assess_admin_password' in api/config.php on the server."; exit; }
-$user = $_SERVER['PHP_AUTH_USER'] ?? null; $pass = $_SERVER['PHP_AUTH_PW'] ?? null;
-if ($user === null && preg_match('/^Basic\s+(.+)$/i', $_SERVER['HTTP_AUTHORIZATION'] ?? '', $m)) [$user, $pass] = array_pad(explode(':', (string)base64_decode($m[1]), 2), 2, '');
-if ($user !== 'hr' || !hash_equals($pw, (string)$pass)) {
-  header('WWW-Authenticate: Basic realm="Norvexa assessment results"'); http_response_code(401); echo 'Login required'; exit;
+$inbox = $cfg['assess_to'] ?? $cfg['to'];
+$self = rtrim($cfg['site_url'] ?? 'https://www.norvexatechnologies.com', '/') . '/api/results.php';
+$authFile = dirname(nx_dir()) . '/assess_auth.json';
+$auth = nx_read($authFile) ?? ['links' => [], 'sessions' => []];
+$now = time();
+foreach (['links', 'sessions'] as $k) $auth[$k] = array_filter((array)$auth[$k], fn($exp) => $exp > $now);
+$h = fn($t) => hash('sha256', (string)$t);
+$startSession = function () use (&$auth, $authFile, $h, $now) {
+  $sid = bin2hex(random_bytes(24));
+  $auth['sessions'][$h($sid)] = $now + 7 * 86400;
+  nx_write($authFile, $auth);
+  setcookie('nx_hr', $sid, ['expires' => $now + 7 * 86400, 'path' => '/api/', 'secure' => !empty($_SERVER['HTTPS']), 'httponly' => true, 'samesite' => 'Lax']);
+  header('Location: results.php'); exit;
+};
+$page = function (string $body, int $code = 200) {
+  http_response_code($code); header('Content-Type: text/html; charset=UTF-8');
+  echo '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Results sign-in · Norvexa</title>'
+    . '<style>:root{--bg:#f7f9fd;--s:#fff;--ink:#0a1230;--mut:#5d6886;--line:#e2e8f3}@media (prefers-color-scheme:dark){:root{--bg:#0b1020;--s:#121a30;--ink:#e8edf8;--mut:#9aa6c4;--line:#24304d}}'
+    . 'body{margin:0;font:15px/1.5 Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink)}.c{max-width:420px;margin:12vh auto;padding:28px;background:var(--s);border:1px solid var(--line);border-radius:16px}'
+    . 'h1{font-size:20px;margin:0 0 8px}p{color:var(--mut)}button,input{font:inherit;width:100%;box-sizing:border-box;padding:11px 14px;border-radius:10px;margin-top:8px}input{border:1px solid var(--line);background:var(--bg);color:var(--ink)}'
+    . 'button{border:0;background:var(--ink);color:var(--bg);font-weight:600;cursor:pointer}hr{border:0;border-top:1px solid var(--line);margin:20px 0}</style></head><body><div class="c">' . $body . '</div></body></html>';
+  exit;
+};
+$mask = preg_replace('/^(.).*(@.*)$/', '$1•••$2', $inbox);
+
+if (isset($_GET['logout'])) { unset($auth['sessions'][$h($_COOKIE['nx_hr'] ?? '')]); nx_write($authFile, $auth); setcookie('nx_hr', '', ['expires' => 1, 'path' => '/api/']); header('Location: results.php'); exit; }
+$authed = isset($_COOKIE['nx_hr']) && isset($auth['sessions'][$h($_COOKIE['nx_hr'])]);
+if (!$authed) {
+  if (isset($_GET['login'])) {
+    $k = $h($_GET['login']);
+    if (isset($auth['links'][$k])) { unset($auth['links'][$k]); $startSession(); }
+    $page('<h1>Link expired</h1><p>This sign-in link has expired or was already used. Links work once, for 20 minutes.</p><a href="results.php">Get a new link</a>', 403);
+  }
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pw']) && $pw !== '' && hash_equals($pw, (string)$_POST['pw'])) $startSession();
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
+    if (!nx_rate_ok('hrlink', 5)) $page('<h1>Too many requests</h1><p>Please wait an hour and try again.</p>', 429);
+    $tok = bin2hex(random_bytes(24));
+    $auth['links'][$h($tok)] = $now + 20 * 60;
+    nx_write($authFile, $auth);
+    nx_mail($cfg, $inbox, 'Sign-in link: assessment results', "Open this link to view the candidate assessment results (valid for 20 minutes, works once):\n\n{$self}?login={$tok}\n\nIf you did not request this, ignore this email.");
+    $page("<h1>Check your inbox</h1><p>We sent a sign-in link to <b>{$mask}</b>. It works once and expires in 20 minutes. Check spam if you don't see it.</p>");
+  }
+  $pwForm = $pw !== '' ? '<hr><form method="post"><input type="password" name="pw" placeholder="Or enter the admin password" autocomplete="current-password" required><button>Sign in</button></form>' : '';
+  $page("<h1>Assessment results</h1><p>Sign in with a one-time link sent to the HR inbox <b>{$mask}</b>.</p><form method=\"post\"><button name=\"send\" value=\"1\">Email me a sign-in link</button></form>" . (isset($_POST['pw']) ? '<p style="color:#b91c1c">Wrong password.</p>' : '') . $pwForm, 401);
 }
 
 $rows = array_values(array_filter(nx_all(), fn($r) => !empty($r['submitted']) || isset($_GET['all'])));
@@ -101,7 +141,7 @@ if (isset($_GET['id'])) {
 }
 
 /* ---------- ranked list */
-echo '<h1>AI marketing assessment results</h1><p class="mut">' . count($rows) . ' submitted · ranked by overall score (MCQ score where practical tasks are not graded)</p><div class="bar">';
+echo '<p style="float:right"><a href="?logout=1">Sign out</a></p><h1>AI marketing assessment results</h1><p class="mut">' . count($rows) . ' submitted · ranked by overall score (MCQ score where practical tasks are not graded)</p><div class="bar">';
 echo '<a href="?" class="' . ($track === '' ? 'on' : '') . '">All</a>';
 foreach ($bank['tracks'] as $k => $t) echo '<a href="?track=' . $k . '" class="' . ($track === $k ? 'on' : '') . '">' . $e($t['label']) . '</a>';
 echo '<a href="?csv=1' . ($track ? '&track=' . $e($track) : '') . '">⬇ CSV</a></div><div class="tw"><table><thead><tr><th>#</th><th>Candidate</th><th>Track</th><th class="n">Overall</th><th class="n">MCQ</th><th class="n">AI fluency</th><th class="n">Automation</th><th class="n">Perf.</th><th>Verdict</th><th class="n">Min</th><th class="n">Tabs</th><th>Submitted</th></tr></thead><tbody>';
